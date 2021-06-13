@@ -1,0 +1,40 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{091a9fbf-18df-40a2-a85f-a0f280bf1e78}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject xmlns=""><Default.Personality></Default.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="DependencyInjection">
+    <MSBuild Projects="src\DependencyInjection.dproj" Targets="" />
+  </Target>
+  <Target Name="DependencyInjection:Clean">
+    <MSBuild Projects="src\DependencyInjection.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="DependencyInjection:Make">
+    <MSBuild Projects="src\DependencyInjection.dproj" Targets="Make" />
+  </Target>
+  <Target Name="DependencyInjection_Tests" DependsOnTargets="DependencyInjection">
+    <MSBuild Projects="test\DependencyInjection.Tests.dproj" Targets="" />
+  </Target>
+  <Target Name="DependencyInjection_Tests:Clean" DependsOnTargets="DependencyInjection:Clean">
+    <MSBuild Projects="test\DependencyInjection.Tests.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="DependencyInjection_Tests:Make" DependsOnTargets="DependencyInjection:Make">
+    <MSBuild Projects="test\DependencyInjection.Tests.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="DependencyInjection;DependencyInjection_Tests" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="DependencyInjection:Clean;DependencyInjection_Tests:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="DependencyInjection:Make;DependencyInjection_Tests:Make" />
+  </Target>
+</Project>
